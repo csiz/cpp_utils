@@ -54,7 +54,7 @@ namespace detail_for_each {
     return detail_unpack_call::unpack_call_sfinae(std::forward<Func>(func), std::forward<Tuple>(tuple));
   }
 
-  namespace _detail_call {  
+  namespace detail_call {  
     template<typename Func, typename Param>
     auto call_impl(Func && func, Param && param) 
       -> decltype(std::forward<Func>(func)(std::forward<Param>(param)))
@@ -73,9 +73,9 @@ namespace detail_for_each {
   /** Call function using either a simple parameter or a tuple of parameters. */
   template<typename Func, typename Param>
   auto call(Func && func, Param && param) 
-    -> decltype(_detail_call::call_impl(std::forward<Func>(func), std::forward<Param>(param)))
+    -> decltype(detail_call::call_impl(std::forward<Func>(func), std::forward<Param>(param)))
   {
-    return _detail_call::call_impl(std::forward<Func>(func), std::forward<Param>(param));
+    return detail_call::call_impl(std::forward<Func>(func), std::forward<Param>(param));
   }
 }
 
