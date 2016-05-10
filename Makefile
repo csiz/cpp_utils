@@ -8,7 +8,8 @@ CXXFLAGS += -std=c++14 -I$(INCLUDE_DIR)
 LDFLAGS += 
 
 TARGETS := \
-	samples/sample
+	samples/for_each \
+	samples/unpack_call \
 
 BUILD_TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
 
@@ -16,9 +17,9 @@ all: $(BUILD_TARGETS)
 
 
 $(BUILD_TARGETS): $(BUILD_DIR)/%: %.cpp make_dirs
-	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 clean:
-	rm -r $(BUILD_DIR)
+	@rm -r $(BUILD_DIR)
 
