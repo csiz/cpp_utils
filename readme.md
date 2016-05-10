@@ -1,5 +1,8 @@
-Fancy For Each
-==============
+Utility library
+===============
+
+csiz::for_each
+--------------
 
 For each loop that can also iterate over maps nicely.
 
