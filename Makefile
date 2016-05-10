@@ -10,6 +10,7 @@ LDFLAGS +=
 TARGETS := \
 	samples/for_each \
 	samples/unpack_call \
+	samples/call \
 
 BUILD_TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
 
