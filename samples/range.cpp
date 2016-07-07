@@ -5,12 +5,6 @@
 #include <memory>
 
 namespace detail {
-    // c++11 doesn't have this...
-    template<typename T, typename... Args>
-    std::unique_ptr<T> make_unique(Args&&... args) {
-        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-    }
-    
     /** Container agnostic iterators. */
     template<typename T>
     class RangeIterator {
@@ -49,7 +43,7 @@ namespace detail {
         struct iterator {
             std::unique_ptr<iterator_base> base_iterator;
             template<typename IteratorType>
-            iterator(IteratorType && it) : base_iterator(make_unique<iterator_implementation<typename std::remove_reference<IteratorType>::type>>(std::move(it))) {}
+            iterator(IteratorType && it) : base_iterator(std::make_unique<iterator_implementation<typename std::remove_reference<IteratorType>::type>>(std::move(it))) {}
             
             iterator& operator ++ () { ++(*base_iterator); return *this; }
             T& operator * () const { return *(*base_iterator); }
