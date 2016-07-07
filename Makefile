@@ -11,6 +11,7 @@ TARGETS := \
 	samples/for_each \
 	samples/unpack_call \
 	samples/call \
+	samples/range \
 
 BUILD_TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
 
