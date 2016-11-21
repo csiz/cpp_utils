@@ -1,4 +1,4 @@
-#include "for_each.hpp"
+#include "magic/for_each.hpp"
 
 #include <vector>
 #include <iostream>
@@ -10,17 +10,17 @@ int main(){
   std::map<std::string, int> m = {{"one", 1}, {"two", 2}};
 
   // Works as expected for a simple vector.
-  csiz::for_each(v, [](int x){
+  magic::for_each(v, [](int x){
     std::cout << x << std::endl;
   });
 
   // More boring behaviour; iterate over a map.
-  csiz::for_each(m, [](std::pair<std::string, int> const& p){
+  magic::for_each(m, [](std::pair<std::string, int> const& p){
     std::cout << p.first << " " << p.second << std::endl;
   });
 
   // This is the fancy part! Name what we're iterating over straight away.
-  csiz::for_each(m, [](auto key, auto value){
+  magic::for_each(m, [](auto key, auto value){
     std::cout << key << " " << value << std::endl;
   });
 

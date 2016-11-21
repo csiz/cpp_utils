@@ -1,4 +1,4 @@
-#include "unpack_call.hpp"
+#include "magic/unpack_call.hpp"
 
 #include <iostream>
 #include <string>
@@ -10,5 +10,5 @@ int main(){
 
   auto args = std::make_pair(1, "one");
 
-  csiz::unpack_call(func, args);
+  magic::unpack_call(func, args);
 }

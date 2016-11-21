@@ -1,4 +1,4 @@
-#include "call.hpp"
+#include "magic/call.hpp"
 
 #include <iostream>
 #include <string>
@@ -14,6 +14,6 @@ int main(){
 
   auto args = std::make_pair(1, "one");
 
-  csiz::call(func, args);
-  csiz::call(func_pair, args);
+  magic::call(func, args);
+  magic::call(func_pair, args);
 }

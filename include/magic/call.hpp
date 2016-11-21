@@ -2,7 +2,7 @@
 
 #include "unpack_call.hpp"
 
-namespace csiz {
+namespace magic {
   namespace detail {
     template<typename Func, typename Param>
     auto call_impl(Func && func, Param && param) 

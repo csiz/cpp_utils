@@ -1,8 +1,8 @@
 Utility library
 ===============
 
-csiz::for_each
---------------
+magic::for_each
+---------------
 
 For each loop that can also iterate over maps nicely.
 

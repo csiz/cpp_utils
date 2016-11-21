@@ -12,13 +12,14 @@ TARGETS := \
 TESTS := \
 	tests/test_call \
 	tests/test_for_each \
+	tests/test_unpack_call \
 
 BUILD_TARGETS := $(addprefix build/, $(TARGETS))
 TESTS_TARGETS := $(addprefix build/, $(addsuffix .pass, $(TESTS)))
 
 all: $(BUILD_TARGETS) $(TESTS_TARGETS)
 
-$(BUILD_TARGETS): build/%: %.cpp
+$(BUILD_TARGETS): build/%: %.cpp $(shell find include -type f)
 	@mkdir -p $(dir $@)
 	@echo "Compiling $@"
 	@$(COMPILE) $< -o $@
