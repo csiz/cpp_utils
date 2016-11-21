@@ -1,25 +1,34 @@
-.PHONY: all clean make_dirs
-
-INCLUDE_DIR ?= include
-BUILD_DIR ?= build
-
 CXX ?= g++
-CXXFLAGS += -std=c++14 -I$(INCLUDE_DIR)
+CXXFLAGS += -std=c++14 -Iinclude
 LDFLAGS += 
+
+COMPILE := $(CXX) $(CXXFLAGS) $(LDFLAGS)
 
 TARGETS := \
 	samples/for_each \
 	samples/unpack_call \
 	samples/call \
 
-BUILD_TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
+TESTS := \
+	tests/test_call \
+	tests/test_for_each \
 
-all: $(BUILD_TARGETS)
+BUILD_TARGETS := $(addprefix build/, $(TARGETS))
+TESTS_TARGETS := $(addprefix build/, $(addsuffix .pass, $(TESTS)))
 
+all: $(BUILD_TARGETS) $(TESTS_TARGETS)
 
-$(BUILD_TARGETS): $(BUILD_DIR)/%: %.cpp make_dirs
+$(BUILD_TARGETS): build/%: %.cpp
 	@mkdir -p $(dir $@)
-	@$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	@echo "Compiling $@"
+	@$(COMPILE) $< -o $@
+
+$(TESTS_TARGETS): build/%.pass: %.sh $(BUILD_TARGETS)
+	@echo -n "Testing $<: "
+	@mkdir -p $(dir $@)
+	@./$< && (echo "PASS"; touch $@) || (echo "FAIL"; rm $@ 2> /dev/null)
 
 clean:
-	@rm -r $(BUILD_DIR)
+	@rm -r build
+
+.PHONY: all clean
