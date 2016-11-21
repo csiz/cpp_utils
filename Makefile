@@ -11,7 +11,6 @@ TARGETS := \
 	samples/for_each \
 	samples/unpack_call \
 	samples/call \
-	samples/range \
 
 BUILD_TARGETS := $(addprefix $(BUILD_DIR)/, $(TARGETS))
 
@@ -24,4 +23,3 @@ $(BUILD_TARGETS): $(BUILD_DIR)/%: %.cpp make_dirs
 
 clean:
 	@rm -r $(BUILD_DIR)
-
