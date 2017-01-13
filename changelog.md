@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 0.3
+-----------
+  * Rename the namespace to `magic`.
+  * Add tests.
+
 Version 0.2
 -----------
   * Move all functions into namespace csiz.
